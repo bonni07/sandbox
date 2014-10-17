@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CamSwitch.cs">
+    <Files>
+      <File FileName="Assets\Scripts\CamSwitch.cs" Line="40" Column="68" />
+      <File FileName="Assets\Scripts\SimpleCameraFollow.cs" Line="10" Column="67" />
+      <File FileName="Assets\Scripts\CheckActive.cs" Line="11" Column="24" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
