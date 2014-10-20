@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CamSwitch.cs" />
      <Compile Include="Assets\Scripts\CheckActive.cs" />
+     <Compile Include="Assets\Scripts\QuestionTree.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraFollow.cs" />
      <Compile Include="Assets\Top-Down Interiors\Origin\Standard Assets\Image Effects (Pro Only)\BlurEffect.cs" />
      <Compile Include="Assets\Top-Down Interiors\Origin\Standard Assets\Image Effects (Pro Only)\ColorCorrectionEffect.cs" />

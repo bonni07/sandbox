@@ -13,19 +13,19 @@ public class CheckActive : MonoBehaviour {
 		checkButton = GameObject.Find ("CheckButton");
 	}
 
-	// When player enters trigger, checkButton becomes active and the camera of the group becomes the checkCam, and vice versa.
+	// checkButton and checkCamera only becomes active when player enters trigger.
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.CompareTag ("Player")) {
 			checkButton.SetActive (true);
-			checkCamera.tag = "CheckCam";
+			checkCamera.enabled = true;
 		}
 	}
 	
 	void OnTriggerExit2D (Collider2D other) {
 		if (other.CompareTag ("Player")) {
 			checkButton.SetActive (false);
-			checkCamera.tag = "NoCheckCam";
+			checkCamera.enabled = false;
 		}
 	}
 }
