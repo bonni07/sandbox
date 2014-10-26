@@ -5,6 +5,9 @@ using System.Collections;
 
 public class QuestionTree : MonoBehaviour {
 
+	GameObject Reset;
+	GameObject Answer;
+
 	GameObject YNPanel;
 	GameObject PasswordPanel;
 	GameObject SuccessPanel;
@@ -18,37 +21,24 @@ public class QuestionTree : MonoBehaviour {
 
 		mainCamera = Camera.main;
 
-		//Find cameras.
+		//Find cameras
 		foreach (Camera q in Camera.allCameras) {
 			if (q.gameObject.tag == "Question") {
 				Option = q;
 			} else if (q.gameObject.tag == "Password") {
 				Field = q;
-			} else {
-				Option = null;
-				Field = null;
 			}
 		}
 
-		//Define variables.
+		//Define variables
+		Reset = GameObject.Find ("_ResetHandler");
+		Answer = GameObject.Find ("AnswerPanels");
+
 		YNPanel = GameObject.Find ("YNPanel");
 		PasswordPanel = GameObject.Find ("PasswordPanel");
 		SuccessPanel = GameObject.Find ("SuccessPanel");
 		FailPanel = GameObject.Find ("FailPanel");
 
-	}
-
-	void Update () {
-
-		//Check state.
-		if (YNPanel.activeSelf == true) {
-			SuccessPanel.SetActive (false);
-			FailPanel.SetActive (false);
-		} else {
-			SuccessPanel.SetActive (true);
-			FailPanel.SetActive (true);
-		}
-		
 		//Selecting which initial screen to show.
 		if (Option != null) {
 			if (Option.enabled == true) {
@@ -65,32 +55,69 @@ public class QuestionTree : MonoBehaviour {
 				PasswordPanel.SetActive (false);
 			}
 		}
+
 	}
 
-	//Functions for each button.
+	void Update () {
+
+		//Initial Question state
+		if (Reset.activeSelf == true) {
+			if (YNPanel.activeSelf == true) {
+				Answer.SetActive (false);
+				Reset.SetActive (false);
+			}
+		}
+
+		//Activate Answers
+		if (YNPanel.activeSelf == false) {
+			Answer.SetActive (true);
+		}
+
+		//Either/Or
+		if (SuccessPanel.activeSelf == true) {
+			FailPanel.SetActive (false);
+		} else {
+			FailPanel.SetActive (true);
+		}
+		if (FailPanel.activeSelf == true) {
+			SuccessPanel.SetActive (false);
+		} else {
+			SuccessPanel.SetActive (true);
+		}
+
+		//Reactivate Reset
+		if (mainCamera.enabled == true) {
+			Reset.SetActive (true);
+		}
+
+		//Reset YNPanel's active state
+		if (mainCamera.enabled == false) {
+			if (Reset.activeSelf == true) {
+				YNPanel.SetActive (true);
+			}
+		}
+	}
+
+	//Functions for each button
 
 	public void Correct () {
 		YNPanel.SetActive (false);
-		PasswordPanel.SetActive (false);
-		SuccessPanel.SetActive (true);
 		FailPanel.SetActive (false);
+		SuccessPanel.SetActive (true);
 	}
 
 	public void Incorrect () {
 		YNPanel.SetActive (false);
-		PasswordPanel.SetActive (false);
-		SuccessPanel.SetActive (false);
 		FailPanel.SetActive (true);
+		SuccessPanel.SetActive (false);
 	}
 
 	public void Retry () {
-		SuccessPanel.SetActive (false);
-		FailPanel.SetActive (false);
+		Answer.SetActive (false);
+		YNPanel.SetActive (true);
 	}
 
 	public void Quit () {
-		Option.enabled = false;
-		Field.enabled = false;
 		mainCamera.enabled = true;
 	}
 }
