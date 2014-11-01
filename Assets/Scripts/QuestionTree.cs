@@ -6,6 +6,7 @@ using System.Collections;
 public class QuestionTree : MonoBehaviour {
 
 	GameObject Reset;
+	GameObject Question;
 	GameObject Answer;
 
 	GameObject YNPanel;
@@ -32,6 +33,7 @@ public class QuestionTree : MonoBehaviour {
 
 		//Define variables
 		Reset = GameObject.Find ("_ResetHandler");
+		Question = GameObject.Find ("QuestionPanels");
 		Answer = GameObject.Find ("AnswerPanels");
 
 		YNPanel = GameObject.Find ("YNPanel");
@@ -62,18 +64,30 @@ public class QuestionTree : MonoBehaviour {
 
 		//Initial Question state
 		if (Reset.activeSelf == true) {
-			if (YNPanel.activeSelf == true) {
+			if (Question.activeSelf == true) {
 				Answer.SetActive (false);
 				Reset.SetActive (false);
 			}
 		}
 
 		//Activate Answers
-		if (YNPanel.activeSelf == false) {
+		if (Question.activeSelf == false) {
 			Answer.SetActive (true);
 		}
 
-		//Either/Or
+		//Questions Either/Or
+		if (YNPanel.activeSelf == true) {
+			PasswordPanel.SetActive (false);
+		} else {
+			PasswordPanel.SetActive (true);
+		}
+		if (PasswordPanel.activeSelf == true) {
+			YNPanel.SetActive (false);
+		} else {
+			YNPanel.SetActive (true);
+		}
+
+		//Answers Either/Or
 		if (SuccessPanel.activeSelf == true) {
 			FailPanel.SetActive (false);
 		} else {
@@ -93,7 +107,7 @@ public class QuestionTree : MonoBehaviour {
 		//Reset YNPanel's active state
 		if (mainCamera.enabled == false) {
 			if (Reset.activeSelf == true) {
-				YNPanel.SetActive (true);
+				Question.SetActive (true);
 			}
 		}
 	}
@@ -101,20 +115,20 @@ public class QuestionTree : MonoBehaviour {
 	//Functions for each button
 
 	public void Correct () {
-		YNPanel.SetActive (false);
+		Question.SetActive (false);
 		FailPanel.SetActive (false);
 		SuccessPanel.SetActive (true);
 	}
 
 	public void Incorrect () {
-		YNPanel.SetActive (false);
+		Question.SetActive (false);
 		FailPanel.SetActive (true);
 		SuccessPanel.SetActive (false);
 	}
 
 	public void Retry () {
 		Answer.SetActive (false);
-		YNPanel.SetActive (true);
+		Question.SetActive (true);
 	}
 
 	public void Quit () {
