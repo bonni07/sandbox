@@ -5,18 +5,18 @@ using System.Collections;
 
 public class QuestionTree : MonoBehaviour {
 
-	GameObject Reset;
-	GameObject Question;
-	GameObject Answer;
-
-	GameObject YNPanel;
-	GameObject PasswordPanel;
-	GameObject SuccessPanel;
-	GameObject FailPanel;
-
-	Camera Option;
-	Camera Field;
-	Camera mainCamera;
+	public GameObject Reset;
+	public GameObject Question;
+	public GameObject Answer;
+    
+	public GameObject YNPanel;
+	public GameObject PasswordPanel;
+	public GameObject SuccessPanel;
+	public GameObject FailPanel;
+    
+	public Camera Option;
+	public Camera Field;
+	public Camera mainCamera;
 
 	void Start () {
 
@@ -62,54 +62,7 @@ public class QuestionTree : MonoBehaviour {
 
 	void Update () {
 
-		//Initial Question state
-		if (Reset.activeSelf == true) {
-			if (Question.activeSelf == true) {
-				Answer.SetActive (false);
-				Reset.SetActive (false);
-			}
-		}
 
-		//Activate Answers
-		if (Question.activeSelf == false) {
-			Answer.SetActive (true);
-		}
-
-		//Questions Either/Or
-		if (YNPanel.activeSelf == true) {
-			PasswordPanel.SetActive (false);
-		} else {
-			PasswordPanel.SetActive (true);
-		}
-		if (PasswordPanel.activeSelf == true) {
-			YNPanel.SetActive (false);
-		} else {
-			YNPanel.SetActive (true);
-		}
-
-		//Answers Either/Or
-		if (SuccessPanel.activeSelf == true) {
-			FailPanel.SetActive (false);
-		} else {
-			FailPanel.SetActive (true);
-		}
-		if (FailPanel.activeSelf == true) {
-			SuccessPanel.SetActive (false);
-		} else {
-			SuccessPanel.SetActive (true);
-		}
-
-		//Reactivate Reset
-		if (mainCamera.enabled == true) {
-			Reset.SetActive (true);
-		}
-
-		//Reset YNPanel's active state
-		if (mainCamera.enabled == false) {
-			if (Reset.activeSelf == true) {
-				Question.SetActive (true);
-			}
-		}
 	}
 
 	//Functions for each button
